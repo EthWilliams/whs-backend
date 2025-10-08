@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "WHS Checker",
+  "version": "1.0",
+  "description": "Check Australian WHS and Standards for workplace scenarios",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png"
+  },
+  "permissions": ["activeTab"]
+}
