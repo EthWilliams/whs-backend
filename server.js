@@ -3,7 +3,12 @@ import cors from "cors";
 import fetch from "node-fetch";
 
 const app = express();
-app.use(cors());
+
+// Allow requests from your Chrome extension
+app.use(cors({
+  origin: ["chrome-extension://fmdjimaoafbfmijhhenedhnmgendpeff"]
+}));
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
@@ -22,24 +27,4 @@ app.post("/check-safety", async (req, res) => {
       body: JSON.stringify({
         model: "gpt-4",
         messages: [
-          { role: "system", content: "You are an expert in Australian WHS and Standards." },
-          { role: "user", content: `Scenario: "${scenario}". List hazards, relevant Australian Standards, WHS regulations, and safety measures.` }
-        ],
-        temperature: 0
-      })
-    });
-
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content || "No data returned from AI.";
-    res.json({ content });
-
-  } catch (err) {
-    console.error(err);
-    res.json({ content: "Error fetching data from OpenAI." });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
+          { role: "system", content: "You are an expert in Australian WHS and S
