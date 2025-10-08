@@ -1,13 +1,13 @@
 async function getWHSInfo(scenario) {
   try {
-    const response = await fetch('http://localhost:3000/check-safety', {
+    const response = await fetch('https://whs-backend.onrender.com/check-safety', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ scenario })
     });
 
     const data = await response.json();
-    return data.content; // <-- must match backend
+    return data.content; // Make sure your backend returns { content: "..." }
   } catch (error) {
     console.error('Error fetching WHS info:', error);
     return 'Error fetching data. Make sure your backend is running.';
